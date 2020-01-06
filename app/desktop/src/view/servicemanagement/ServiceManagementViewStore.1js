@@ -1,0 +1,45 @@
+Ext.define('CargoESB.view.servicemanagement.ServiceManagementViewStore', {
+	extend: 'Ext.data.Store',
+	alias: 'store.servicemanagementviewStore',
+	//model: 'User',
+	fields: [
+		{name: 'uuid', type: 'string'},
+		{name: 'name',  type: 'string'},
+		{name: 'status',  type: 'string'},
+		{name: 'address',  type: 'string'},
+		{name: 'version',  type: 'string'},
+		{name: 'user',  type: 'string'},
+		{name: 'createtime',  type: 'string'},
+		{name: 'updatetime',  type: 'string'}
+	]
+	/*fields: [
+		'name', 'email', 'phone'
+	],
+	data: { items: [
+		{ name: 'flightserviceinput',    serviceSupplier: "zhenghao.zhou", version: "1.0", status:"正常"},
+		{ name: 'flightserviceinput1',   serviceSupplier: "zhenghao.zhou", version: "1.0", status:"正常"},
+		{ name: 'flightserviceinput2',   serviceSupplier: "zhenghao.zhou", version: "1.0", status:"正常"},
+		{ name: 'flightserviceinput3',   serviceSupplier: "zhenghao.zhou", version: "1.0", status:"正常"}
+	]},
+
+proxy: {
+		type: 'memory',
+		reader: {
+			type: 'json',
+			rootProperty: 'items'
+		}
+	} */
+});
+var myStore = Ext.create('Ext.data.Store', {
+	model: 'User',
+	proxy: {
+		type: 'ajax',
+		url: 'http://localhost:8095/query',
+		reader: {
+			type: 'json',
+			rootProperty: 'users'
+		}
+	},
+
+	autoLoad: true
+});
